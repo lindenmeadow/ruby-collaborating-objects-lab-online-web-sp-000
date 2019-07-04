@@ -34,6 +34,10 @@ class Artist
     artist
   end
 
+  def save
+    @@all << self
+  end
+
   def print_songs()
     puts @songs.collect {|s| s.name}
   end
