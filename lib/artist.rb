@@ -10,14 +10,6 @@ class Artist
     @@all
   end
 
-  def artist_name=(name)
-    if (self.artist.nil?)
-      self.artist = Artist.new(name)
-    else
-      self.artist.name = name
-    end
-  end
-
   def add_song(song)
     @songs << song
   end
@@ -30,8 +22,20 @@ class Artist
     end
   end
 
-  def print_songs
+  def self.find(name)
+    @@all.find do |artist|
+      artist.name == name
+    end
+  end
 
+  def self.create(name)
+    artist = self.new(name)
+    @@all << artist
+    artist
+  end
+
+  def print_songs()
+    puts @songs.collect {|s| s.name}
   end
 
 end
